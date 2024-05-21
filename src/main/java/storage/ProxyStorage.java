@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 public class ProxyStorage implements StorageInterface {
     private Storage storage;
     private DBManager dbManager;
+
     public ProxyStorage(DBManager dbManager) {
         this.dbManager = dbManager;
         this.storage = new Storage(this.dbManager);
@@ -55,7 +56,8 @@ public class ProxyStorage implements StorageInterface {
             throw new RuntimeException(e);
         }
     }
-//useless
+
+    //useless
     @Override
     public void save() throws IOException {
 
@@ -70,6 +72,7 @@ public class ProxyStorage implements StorageInterface {
     public StorageInfo getInfo() {
         return this.storage.getInfo();
     }
+
     //useless
     @Override
     public void removeFirst() {
@@ -84,5 +87,15 @@ public class ProxyStorage implements StorageInterface {
     @Override
     public void getToCollect(Stream<City> cityStream) {
         this.storage.getToCollect(cityStream);
+    }
+
+    @Override
+    public void remove(int id) {
+        try {
+            this.dbManager.remove(id);
+            this.storage.remove(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

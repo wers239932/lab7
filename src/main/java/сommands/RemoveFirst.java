@@ -12,7 +12,8 @@ public class RemoveFirst implements Command {
 
     @Override
     public ArrayList<String> execute(Request request, StorageInterface storage) throws CommandException {
-        storage.removeFirst();
+        if(storage.getCitiesList().size()>=1)
+            storage.remove(0);
         return new ArrayList<>();
     }
 

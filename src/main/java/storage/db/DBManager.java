@@ -15,16 +15,6 @@ public class DBManager implements DataLoader {
     {
         this.connection = connection;
     }
-    private ResultSet executeQuery(String request) throws SQLException {
-        Statement statement = this.connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(request);
-        return resultSet;
-    }
-    private int executeUpdate(String request) throws SQLException {
-        Statement statement = this.connection.createStatement();
-        int changed = statement.executeUpdate(request);
-        return changed;
-    }
     public void add(City city) throws SQLException {
         String query = "INSERT INTO " + this.tableName +
                 " (name, coordinate_x, coordinate_y, creation_date, area, population, meters_above_sea_level, capital, carCode, government, governor)" +

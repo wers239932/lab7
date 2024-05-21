@@ -24,7 +24,11 @@ public class RemoveAllByCarCode implements Command {
             throw new CommandException("не введен аргумент");
         }
         ArrayList<String> response = new ArrayList<>();
-        storage.getToCollect(storage.getCitiesStream().filter(city -> !Objects.equals(city.getCarCode(), carCode)));
+        for(City city : storage.getCitiesList()) {
+            if(city.getCarCode().equals(carCode)) {
+                storage.remove(city.getId());
+            }
+        }
         response.add("объекты удалены");
         return response;
     }

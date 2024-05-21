@@ -23,7 +23,7 @@ public class RemoveById implements Command {
             throw new CommandException("не введен аргумент");
         }
         ArrayList<String> response = new ArrayList<>();
-        storage.getToCollect(storage.getCitiesStream().filter(city -> city.getId() != id));
+        storage.remove(id);
         response.add("объект удален");
         return response;
     }

@@ -4,85 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13d16df6-874a-4a0a-af82-ef5e2fc5602c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Pair.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/NoMessageException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/ProtocolInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/RequestStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/Response.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/AppClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/app/AppServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cli/ArgumentParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cli/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cli/CommandSender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cli/FileTerminal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cli/IOInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cli/Terminal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cli/commandExceptions/CommandDoesntExistException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cli/commandExceptions/CommandException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/client/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/client/InteractiveCityParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dal/DataAccessLayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/dal/DataLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/db.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/server/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/CityNameComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/Parser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/ProxyStorage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/Storage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/db/DBManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objectExceptions/AreaException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objectExceptions/ArgumentCityException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objectExceptions/CapitalException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objectExceptions/CarCodeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objectExceptions/CoordinatesException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objectExceptions/GovernmentException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objectExceptions/GovernorException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objectExceptions/HeightException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objectExceptions/IdException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objectExceptions/IncorrectDataExceptoin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objectExceptions/NameCityException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objectExceptions/PopulationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objects/Capital.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objects/CarCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objects/City.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objects/Coordinates.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objects/Government.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objects/Human.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objects/ID.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storage/objects/StorageInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/storageInterface/StorageInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/Add.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/Clear.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/CommandArrayFiller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/CountGreaterThanCapital.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/ExecuteScript.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/Exit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/Help.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/Info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveAllByCarCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveById.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveFirst.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveGreater.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveLower.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/Save.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/Show.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/SumOfCarCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/Update.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/Write.java" afterDir="false" />
+    <list default="true" id="13d16df6-874a-4a0a-af82-ef5e2fc5602c" name="Changes" comment="починил update, add">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/ProxyStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/ProxyStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/Storage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/db/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/db/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storageInterface/StorageInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storageInterface/StorageInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveAllByCarCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveAllByCarCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveById.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveById.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveFirst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveFirst.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveGreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveGreater.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveLower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveLower.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,6 +106,14 @@
       <option name="presentableId" value="Default" />
       <updated>1716133981562</updated>
     </task>
+    <task id="LOCAL-00001" summary="починил update, add">
+      <created>1716301852093</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716301852093</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -186,5 +126,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="починил update, add" />
+    <option name="LAST_COMMIT_MESSAGE" value="починил update, add" />
   </component>
 </project>

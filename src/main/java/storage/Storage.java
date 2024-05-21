@@ -111,4 +111,10 @@ public class Storage implements StorageInterface, Serializable {
     public void getToCollect(Stream<City> cityStream) {
         this.objects = cityStream.collect(Collectors.toCollection(ArrayList::new));
     }
+
+    @Override
+    public void remove(int id) {
+        this.objects.removeIf(city -> city.getId()==id);
+    }
+
 }

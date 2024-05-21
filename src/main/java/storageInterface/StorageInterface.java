@@ -28,4 +28,5 @@ public interface StorageInterface {
     public Stream<City> getCitiesStream();
 
     public void getToCollect(Stream<City> cityStream);
+    public void remove(int id);
 }
