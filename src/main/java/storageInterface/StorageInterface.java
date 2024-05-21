@@ -1,5 +1,6 @@
 package storageInterface;
 
+import storage.db.NotAnOwnerException;
 import storage.objects.City;
 import storage.objects.StorageInfo;
 
@@ -13,7 +14,7 @@ public interface StorageInterface {
 
     public void add(City city);
 
-    void update(City city, int id);
+    void update(City city, int id) throws NotAnOwnerException;
 
     public void clear();
 
@@ -23,10 +24,12 @@ public interface StorageInterface {
 
     public StorageInfo getInfo();
 
-    public void removeFirst();
-
     public Stream<City> getCitiesStream();
 
     public void getToCollect(Stream<City> cityStream);
-    public void remove(int id);
+
+    void remove(String login, int id) throws NotAnOwnerException;
+
+    public void register(String login, String passwd);
+    public Boolean auth(String login, String passwd);
 }

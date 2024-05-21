@@ -1,6 +1,8 @@
 package storage;
 
-import storage.db.DBManager;
+import storage.db.DBStorageManager;
+import storage.db.DBUserManager;
+import storage.db.NotAnOwnerException;
 import storage.objects.City;
 import storage.objects.StorageInfo;
 import storageInterface.StorageInterface;
@@ -12,11 +14,12 @@ import java.util.stream.Stream;
 
 public class ProxyStorage implements StorageInterface {
     private Storage storage;
-    private DBManager dbManager;
+    private DBStorageManager dbStorageManager;
+    private DBUserManager dbUserManager;
 
-    public ProxyStorage(DBManager dbManager) {
-        this.dbManager = dbManager;
-        this.storage = new Storage(this.dbManager);
+    public ProxyStorage(DBStorageManager dbStorageManager) {
+        this.dbStorageManager = dbStorageManager;
+        this.storage = new Storage(this.dbStorageManager);
     }
 
     @Override
@@ -27,7 +30,7 @@ public class ProxyStorage implements StorageInterface {
     @Override
     public void add(City city) {
         try {
-            this.dbManager.add(city);
+            this.dbStorageManager.add(city);
             this.storage.add(city);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -36,9 +39,9 @@ public class ProxyStorage implements StorageInterface {
     }
 
     @Override
-    public void update(City city, int id) {
+    public void update(City city, int id) throws NotAnOwnerException {
         try {
-            this.dbManager.update(city, id);
+            this.dbStorageManager.update(city, id);
             this.storage.update(city, id);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -50,7 +53,7 @@ public class ProxyStorage implements StorageInterface {
     @Override
     public void clear() {
         try {
-            this.dbManager.clear();
+            this.dbStorageManager.clear();
             this.storage.clear();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -73,11 +76,6 @@ public class ProxyStorage implements StorageInterface {
         return this.storage.getInfo();
     }
 
-    //useless
-    @Override
-    public void removeFirst() {
-
-    }
 
     @Override
     public Stream<City> getCitiesStream() {
@@ -90,10 +88,28 @@ public class ProxyStorage implements StorageInterface {
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(String login, int id) throws NotAnOwnerException {
         try {
-            this.dbManager.remove(id);
-            this.storage.remove(id);
+            this.dbStorageManager.remove(login, id);
+            this.storage.remove(login, id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void register(String login, String passwd) {
+        try {
+            this.dbUserManager.register(login, passwd);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Boolean auth(String login, String passwd) {
+        try {
+            return this.dbUserManager.auth(login, passwd);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

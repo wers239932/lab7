@@ -15,6 +15,7 @@ import java.util.Random;
  */
 
 public class City implements Comparable<City>, Serializable {
+    private String ownerLogin;
 
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
 
@@ -283,6 +284,14 @@ public class City implements Comparable<City>, Serializable {
 
     public ZonedDateTime getCreationDate() {
         return this.creationDate;
+    }
+
+    public String getOwnerLogin() {
+        return this.ownerLogin;
+    }
+
+    public void setOwnerLogin(String  ownerLogin) {
+        this.ownerLogin = ownerLogin;
     }
 
     @Override

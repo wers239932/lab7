@@ -4,17 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13d16df6-874a-4a0a-af82-ef5e2fc5602c" name="Changes" comment="починил update, add">
+    <list default="true" id="13d16df6-874a-4a0a-af82-ef5e2fc5602c" name="Changes" comment="починил все команды">
+      <change afterPath="$PROJECT_DIR$/src/main/java/storage/db/DBUserManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/storage/db/NotAnOwnerException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/Authorise.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/Register.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/Request.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/CommandSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/CommandSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/storage/ProxyStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/ProxyStorage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/storage/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/Storage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/db/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/db/DBManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/db/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/db/DBStorageManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/objects/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/objects/City.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/storageInterface/StorageInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storageInterface/StorageInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveAllByCarCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveAllByCarCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveById.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveById.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveFirst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveFirst.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveGreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveGreater.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveLower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveLower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Update.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716301852093</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="починил все команды">
+      <created>1716310397375</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716310397375</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -129,6 +146,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="починил update, add" />
-    <option name="LAST_COMMIT_MESSAGE" value="починил update, add" />
+    <MESSAGE value="починил все команды" />
+    <option name="LAST_COMMIT_MESSAGE" value="починил все команды" />
   </component>
 </project>

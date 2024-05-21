@@ -3,6 +3,7 @@ package сommands;
 import api.Request;
 import cli.Command;
 import cli.commandExceptions.CommandException;
+import storage.db.NotAnOwnerException;
 import storage.objects.City;
 import storage.objectExceptions.CarCodeException;
 import storageInterface.StorageInterface;
@@ -25,8 +26,12 @@ public class RemoveAllByCarCode implements Command {
         }
         ArrayList<String> response = new ArrayList<>();
         for(City city : storage.getCitiesList()) {
-            if(city.getCarCode().equals(carCode)) {
-                storage.remove(city.getId());
+            if(city.getCarCode().equals(carCode) && city.getOwnerLogin().equals(request.getLogin())) {
+                try {
+                    storage.remove(request.getLogin() ,city.getId());
+                } catch (NotAnOwnerException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
         response.add("объекты удалены");

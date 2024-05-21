@@ -7,8 +7,10 @@ import cli.commandExceptions.CommandException;
 import client.Client;
 import client.InteractiveCityParser;
 import storage.objects.City;
+import сommands.Authorise;
 import сommands.ExecuteScript;
 import сommands.Exit;
+import сommands.Register;
 
 import java.time.Clock;
 import java.time.ZoneId;
@@ -20,6 +22,8 @@ public class CommandSender {
     private IOInterface terminal;
     private HashSet<String> runningScripts;
     private Client client;
+    private String login;
+    private String passwd;
 
     public CommandSender(IOInterface terminal, Client client) {
         this.terminal = terminal;
@@ -67,12 +71,26 @@ public class CommandSender {
                     commandSender.addCommandArray(this.getCommandArray());
                     commandSender.start();
                     this.runningScripts.remove(filename);
+                } else if(command instanceof Authorise) {
+                    String login = commandLine.get(0);
+                    String passwd = commandLine.get(1);
+                    Response response = this.client.sendRequest(new Request<>(commandName, null, commandLine));
+                    if(Boolean.parseBoolean(((ArrayList<String>) response.getData()).get(0))) {
+                        this.login = login;
+                        this.passwd = passwd;
+                        this.terminal.writeLine("доступ получен");
+                    }
+                    else terminal.writeLine("доступ запрещен");
+                }else if(command instanceof Register) {
+                    this.login = commandLine.get(0);
+                    this.passwd = commandLine.get(1);
                 } else {
                     City city = null;
                     if (command.getNeedObject()) {
                         city = InteractiveCityParser.parseCity(this.terminal);
                         Clock clock = Clock.system(ZoneId.of("Europe/Moscow"));
                         city.setCreationDate(ZonedDateTime.now(clock));
+                        city.setOwnerLogin(this.login);
                     }
                     commandLine.remove(0);
                     Response response = this.client.sendRequest(new Request<>(commandName, city, commandLine));

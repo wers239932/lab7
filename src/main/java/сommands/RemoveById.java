@@ -3,6 +3,7 @@ package сommands;
 import api.Request;
 import cli.Command;
 import cli.commandExceptions.CommandException;
+import storage.db.NotAnOwnerException;
 import storage.objects.City;
 import storage.objectExceptions.IdException;
 import storageInterface.StorageInterface;
@@ -23,8 +24,12 @@ public class RemoveById implements Command {
             throw new CommandException("не введен аргумент");
         }
         ArrayList<String> response = new ArrayList<>();
-        storage.remove(id);
-        response.add("объект удален");
+        try {
+            storage.remove(request.getLogin() , id);
+            response.add("объект удален");
+        } catch (NotAnOwnerException e) {
+            response.add("нет права на удаление объекта");
+        }
         return response;
     }
 

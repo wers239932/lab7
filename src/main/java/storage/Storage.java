@@ -96,11 +96,6 @@ public class Storage implements StorageInterface, Serializable {
     }
 
 
-    @Override
-    public void removeFirst() {
-        if (!this.objects.isEmpty())
-            this.objects.remove(0);
-    }
 
     @Override
     public Stream<City> getCitiesStream() {
@@ -113,8 +108,18 @@ public class Storage implements StorageInterface, Serializable {
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(String login, int id) {
         this.objects.removeIf(city -> city.getId()==id);
+    }
+
+    @Override
+    public void register(String login, String passwd) {
+
+    }
+
+    @Override
+    public Boolean auth(String login, String passwd) {
+        return true;
     }
 
 }

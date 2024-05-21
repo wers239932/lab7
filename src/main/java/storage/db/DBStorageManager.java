@@ -1,6 +1,5 @@
 package storage.db;
 
-import api.RequestStatus;
 import dal.DataLoader;
 import storage.objects.City;
 
@@ -8,17 +7,17 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DBManager implements DataLoader {
+public class DBStorageManager implements DataLoader {
     private Connection connection;
     private final String tableName = "cities_list";
-    public DBManager(Connection connection)
+    public DBStorageManager(Connection connection)
     {
         this.connection = connection;
     }
     public void add(City city) throws SQLException {
         String query = "INSERT INTO " + this.tableName +
-                " (name, coordinate_x, coordinate_y, creation_date, area, population, meters_above_sea_level, capital, carCode, government, governor)" +
-                " VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+                " (name, coordinate_x, coordinate_y, creation_date, area, population, meters_above_sea_level, capital, carCode, government, governor, owner)" +
+                " VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
         PreparedStatement ps = this.connection.prepareStatement(query);
         this.addCity(ps, city);
         int changed = ps.executeUpdate();
@@ -44,21 +43,38 @@ public class DBManager implements DataLoader {
         ps.setString(9, String.valueOf(city.getCarCode()));
         ps.setString(10, String.valueOf(city.getGovernment()));
         ps.setString(11, String.valueOf(city.getGovernor()));
+        ps.setString(12, city.getOwnerLogin());
     }
-    public void update(City city, int id) throws SQLException {
-        String query = "UPDATE " + this.tableName + " SET " +
-                "name = ?, coordinate_x = ?, coordinate_y = ?, creation_date = ?, area = ?, population = ?, meters_above_sea_level = ?, capital = ?, carCode = ?, government = ?, governor = ?" +
-                "WHERE id = ?";
-        PreparedStatement ps = this.connection.prepareStatement(query);
-        this.addCity(ps, city);
-        ps.setInt(12, id);
-        System.out.println(ps.executeUpdate());
+    public void update(City city, int id) throws SQLException, NotAnOwnerException {
+        if(checkUser(city.getOwnerLogin(), id))
+        {
+            String query = "UPDATE " + this.tableName + " SET " +
+                    "name = ?, coordinate_x = ?, coordinate_y = ?, creation_date = ?, area = ?, population = ?, meters_above_sea_level = ?, capital = ?, carCode = ?, government = ?, governor = ?" +
+                    "WHERE id = ?";
+            PreparedStatement ps = this.connection.prepareStatement(query);
+            this.addCity(ps, city);
+            ps.setInt(12, id);
+            System.out.println(ps.executeUpdate());
+        }
+        else throw new NotAnOwnerException();
     }
-    public void remove(int id) throws SQLException {
-        String query = "DELETE FROM " + this.tableName +" WHERE id = ?";
+    private Boolean checkUser(String login, int id) throws SQLException {
+        String query = "SELECT login FROM " + tableName + " WHERE id = ? AND login = ?;";
         PreparedStatement ps = this.connection.prepareStatement(query);
         ps.setInt(1, id);
-        ps.executeUpdate();
+        ps.setString(2, login);
+        ResultSet resultSet = ps.executeQuery();
+        return resultSet.next();
+    }
+    ///////
+    public void remove(String login, int id) throws SQLException, NotAnOwnerException {
+        if(checkUser(login, id)) {
+            String query = "DELETE FROM " + this.tableName + " WHERE id = ?";
+            PreparedStatement ps = this.connection.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        }
+        else throw new NotAnOwnerException();
     }
     public void clear() throws SQLException {
         String query = "TRUNCATE " + tableName;

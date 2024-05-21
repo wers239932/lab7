@@ -3,6 +3,7 @@ package сommands;
 import api.Request;
 import cli.Command;
 import cli.commandExceptions.CommandException;
+import storage.db.NotAnOwnerException;
 import storageInterface.StorageInterface;
 
 import java.util.ArrayList;
@@ -12,8 +13,15 @@ public class RemoveFirst implements Command {
 
     @Override
     public ArrayList<String> execute(Request request, StorageInterface storage) throws CommandException {
-        if(storage.getCitiesList().size()>=1)
-            storage.remove(0);
+        ArrayList<String> response = new ArrayList<>();
+        if(storage.getCitiesList().size()>=1) {
+            try {
+                storage.remove(request.getLogin() ,0);
+                response.add("объект удален");
+            } catch (NotAnOwnerException e) {
+                response.add("нет права на удаление объекта");
+            }
+        }
         return new ArrayList<>();
     }
 

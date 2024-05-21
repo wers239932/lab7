@@ -3,6 +3,7 @@ package сommands;
 import api.Request;
 import cli.Command;
 import cli.commandExceptions.CommandException;
+import storage.db.NotAnOwnerException;
 import storage.objects.City;
 import storageInterface.StorageInterface;
 
@@ -15,8 +16,12 @@ public class RemoveLower implements Command {
         City city = (City) request.getData();
         ArrayList<String> response = new ArrayList<>();
         for(City city1: storage.getCitiesList()) {
-            if(city1.compareTo(city)<0)
-                storage.remove(city1.getId());
+            if(city1.compareTo(city)<0 && city1.getOwnerLogin().equals(request.getLogin())) {
+                try {
+                    storage.remove(request.getLogin(), city1.getId());
+                } catch (NotAnOwnerException ignored) {
+                }
+            }
         }
         response.add("элементы удалены");
         return response;

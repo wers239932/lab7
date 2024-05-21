@@ -20,6 +20,8 @@ public class Request<T> implements Serializable {
      */
     private T data;
     private ArrayList<String> args;
+    private String login;
+    private String passwd;
 
     public Request(String commandName, T data, ArrayList<String> args) {
         this.commandName = commandName;
@@ -42,5 +44,12 @@ public class Request<T> implements Serializable {
 
     public ArrayList<String> getArgs() {
         return this.args;
+    }
+
+    public String getLogin() {
+        return this.login;
+    }
+    public String getPasswd() {
+        return this.passwd;
     }
 }

@@ -1,10 +1,9 @@
 package app;
 
 import cli.Command;
-import dal.DataAccessLayer;
 import server.Server;
 import storage.ProxyStorage;
-import storage.db.DBManager;
+import storage.db.DBStorageManager;
 import storage.Storage;
 import сommands.CommandArrayFiller;
 
@@ -18,15 +17,15 @@ import java.util.Properties;
 public class AppServer {
     public static void run() {
         Storage storage = null;
-        DBManager dbManager = null;
+        DBStorageManager dbStorageManager = null;
         try {
             Properties info = new Properties();
             info.load(new FileReader("src/main/java/db.cfg"));
-            dbManager = new DBManager(DriverManager.getConnection("jdbc:postgresql://db:5432/studs", info));
+            dbStorageManager = new DBStorageManager(DriverManager.getConnection("jdbc:postgresql://db:5432/studs", info));
         }  catch (Exception e) {
             throw new RuntimeException(e);
         }
-        ProxyStorage proxyStorage = new ProxyStorage(dbManager);
+        ProxyStorage proxyStorage = new ProxyStorage(dbStorageManager);
         try {
             proxyStorage.load();
         } catch (IOException e) {

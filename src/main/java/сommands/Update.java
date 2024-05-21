@@ -3,6 +3,7 @@ package сommands;
 import api.Request;
 import cli.Command;
 import cli.commandExceptions.CommandException;
+import storage.db.NotAnOwnerException;
 import storage.objects.City;
 import storage.objectExceptions.IdException;
 import storageInterface.StorageInterface;
@@ -21,8 +22,12 @@ public class Update implements Command {
         }
         City city = (City) request.getData();
         ArrayList<String> response = new ArrayList<>();
-        storage.update(city, Integer.parseInt((String) request.getArgs().get(0)));
-        response.add("объект обновлен");
+        try {
+            storage.update(city, Integer.parseInt((String) request.getArgs().get(0)));
+            response.add("объект обновлен");
+        } catch (NotAnOwnerException e) {
+            response.add("нет права на изменение объекта");
+        }
         return response;
     }
 
