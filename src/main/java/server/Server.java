@@ -6,6 +6,7 @@ import api.RequestStatus;
 import api.Response;
 import cli.Command;
 import cli.commandExceptions.CommandException;
+import storage.db.AuthException;
 import storageInterface.StorageInterface;
 
 import java.io.*;
@@ -181,11 +182,15 @@ public class Server {
                 Command command = this.commandMap.get(commandName);
                 ArrayList<String> output = null;
                 try {
+                    if(!this.storage.auth(request.getLogin(), request.getPasswd()))
+                        throw new AuthException();
                     output = command.execute(request, this.storage);
                     response = new Response<>(output, RequestStatus.DONE, null);
                 } catch (CommandException e) {
                     response = new Response<>(RequestStatus.FAILED, e.getMessage());
                     logger.severe("запрос клиента не выполнен, ошибка: " + e.getMessage());
+                } catch (AuthException e) {
+                    response = new Response<>(RequestStatus.FAILED, "данные пользователя неверны");
                 }
                 break;
             }

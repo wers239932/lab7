@@ -26,6 +26,8 @@ public class CommandArrayFiller {
         commandList.add(new Update());
         commandList.add(new Write());
         commandList.add(new ExecuteScript());
+        commandList.add(new Authorise());
+        commandList.add(new Register());
         return commandList;
     }
 

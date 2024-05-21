@@ -12,6 +12,7 @@ import сommands.ExecuteScript;
 import сommands.Exit;
 import сommands.Register;
 
+import java.io.IOException;
 import java.time.Clock;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -24,6 +25,7 @@ public class CommandSender {
     private Client client;
     private String login;
     private String passwd;
+    private Boolean loggedIn = false;
 
     public CommandSender(IOInterface terminal, Client client) {
         this.terminal = terminal;
@@ -53,12 +55,28 @@ public class CommandSender {
     public void start() {
         ArrayList<Command> commands = (ArrayList<Command>) this.client.sendRequest(new Request("getCommands")).getData();
         this.addCommandArray(commands);
+        this.getToLogIn();
         while (true) {
             try {
                 ArrayList<String> commandLine = new ArrayList<>(List.of(this.terminal.readLine().split(" +")));
                 String commandName = commandLine.get(0);
                 Command command = this.getCommand(commandName);
-                if(command instanceof Exit)
+                if(command instanceof Authorise) {
+                    String login = commandLine.get(0);
+                    String passwd = commandLine.get(1);
+                    Response response = this.client.sendRequest(new Request<>(commandName, null, commandLine));
+                    if(Boolean.parseBoolean(((ArrayList<String>) response.getData()).get(0))) {
+                        this.login = login;
+                        this.passwd = passwd;
+                        this.terminal.writeLine("доступ получен");
+                        this.loggedIn = true;
+                    }
+                    else terminal.writeLine("доступ запрещен");
+                } else if(command instanceof Register) {
+                    this.login = commandLine.get(0);
+                    this.passwd = commandLine.get(1);
+                    this.loggedIn = true;
+                } else if(command instanceof Exit)
                 {
                     System.exit(1);
                 } else if (command instanceof ExecuteScript) {
@@ -71,20 +89,7 @@ public class CommandSender {
                     commandSender.addCommandArray(this.getCommandArray());
                     commandSender.start();
                     this.runningScripts.remove(filename);
-                } else if(command instanceof Authorise) {
-                    String login = commandLine.get(0);
-                    String passwd = commandLine.get(1);
-                    Response response = this.client.sendRequest(new Request<>(commandName, null, commandLine));
-                    if(Boolean.parseBoolean(((ArrayList<String>) response.getData()).get(0))) {
-                        this.login = login;
-                        this.passwd = passwd;
-                        this.terminal.writeLine("доступ получен");
-                    }
-                    else terminal.writeLine("доступ запрещен");
-                }else if(command instanceof Register) {
-                    this.login = commandLine.get(0);
-                    this.passwd = commandLine.get(1);
-                } else {
+                }  else {
                     City city = null;
                     if (command.getNeedObject()) {
                         city = InteractiveCityParser.parseCity(this.terminal);
@@ -127,11 +132,36 @@ public class CommandSender {
 
     }
 
-    /*public ArrayList<String> help() {
-        ArrayList<String> response = new ArrayList<>();
-        for (Command command : this.commandArray.values()) {
-            response.add(command.getDescription());
+    private void getToLogIn() {
+        this.terminal.writeLine("пожалуйста, залогиньтесь используя команду authorise {login} {password}, или register {login} {password}");
+        while (!this.loggedIn) {
+            try {
+                ArrayList<String> commandLine = new ArrayList<>(List.of(this.terminal.readLine().split(" +")));
+                String commandName = commandLine.get(0);
+                Command command = this.getCommand(commandName);
+                if (command instanceof Authorise) {
+                    String login = commandLine.get(0);
+                    String passwd = commandLine.get(1);
+                    Response response = this.client.sendRequest(new Request<>(commandName, null, commandLine));
+                    if (Boolean.parseBoolean(((ArrayList<String>) response.getData()).get(0))) {
+                        this.login = login;
+                        this.passwd = passwd;
+                        this.terminal.writeLine("доступ получен");
+                        this.loggedIn = true;
+                    } else terminal.writeLine("доступ запрещен");
+                } else if (command instanceof Register) {
+                    this.login = commandLine.get(0);
+                    this.passwd = commandLine.get(1);
+                    this.loggedIn = true;
+                    this.terminal.writeLine("доступ получен");
+                } else {
+                    this.terminal.writeLine("пожалуйста, залогиньтесь используя команду authorise {login} {password}, или register {login} {password}, вы не можете использовать другие команды");
+                }
+            } catch (CommandDoesntExistException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
-        return response;
-    }*/
+    }
 }
