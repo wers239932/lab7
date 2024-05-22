@@ -8,6 +8,7 @@ import storage.objects.City;
 import storage.objectExceptions.IdException;
 import storageInterface.StorageInterface;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RemoveById implements Command {
@@ -29,6 +30,8 @@ public class RemoveById implements Command {
             response.add("объект удален");
         } catch (NotAnOwnerException e) {
             response.add("нет права на удаление объекта");
+        } catch (SQLException e) {
+            throw new CommandException("ошибка при работе с базой данных");
         }
         return response;
     }

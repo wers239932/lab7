@@ -1,8 +1,5 @@
 package storage.db;
 
-import сommands.Register;
-
-import java.io.StringReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,18 +12,24 @@ public class DBUserManager {
     {
         this.connection = connection;
     }
-    public void register(String login, String passwd) throws SQLException {
-        String query = "INSERT INTO " + this.tableName +
+    public Boolean register(String login, String passwd) throws SQLException {
+        String query1 = "SELECT id FROM " + this.tableName + " WHERE login = ?";
+        PreparedStatement ps1 = this.connection.prepareStatement(query1);
+        ps1.setString(1, login);
+        ResultSet resultSet = ps1.executeQuery();
+        if(resultSet.next()) return false;
+        String query2 = "INSERT INTO " + this.tableName +
                 " (login, passwd)" +
                 " VALUES (?,?)";
-        PreparedStatement ps = this.connection.prepareStatement(query);
+        PreparedStatement ps = this.connection.prepareStatement(query2);
         ps.setString(1, login);
         ps.setString(2, passwd);
         int changed = ps.executeUpdate();
         if(changed!=1) throw new SQLException("неизвестная ошибка при взаимодействии с базой данных");
+        return true;
     }
     public Boolean auth(String login, String passwd) throws SQLException {
-        String query = "SELECT id FROM " + this.tableName + " WHERE login = ? AND passwd = ?";
+        String query = "SELECT * FROM " + this.tableName + " WHERE login = ? AND passwd = ?";
         PreparedStatement ps = this.connection.prepareStatement(query);
         ps.setString(1, login);
         ps.setString(2, passwd);

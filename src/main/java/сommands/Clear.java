@@ -5,6 +5,7 @@ import cli.Command;
 import cli.commandExceptions.CommandException;
 import storageInterface.StorageInterface;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Clear implements Command {
@@ -13,7 +14,11 @@ public class Clear implements Command {
     @Override
     public ArrayList<String> execute(Request request, StorageInterface storage) throws CommandException {
         ArrayList<String> response = new ArrayList<>();
-        storage.clear();
+        try {
+            storage.clear(request.getLogin());
+        } catch (SQLException e) {
+            throw new CommandException("ошибка при работе с базой данных");
+        }
         response.add("коллекция очищена");
         return response;
     }

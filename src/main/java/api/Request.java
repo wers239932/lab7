@@ -23,6 +23,13 @@ public class Request<T> implements Serializable {
     private String login;
     private String passwd;
 
+    public Request(String commandName, T data, ArrayList<String> args, String login, String passwd) {
+        this.commandName = commandName;
+        this.data = data;
+        this.args = args;
+        this.login = login;
+        this.passwd = passwd;
+    }
     public Request(String commandName, T data, ArrayList<String> args) {
         this.commandName = commandName;
         this.data = data;

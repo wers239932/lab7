@@ -16,6 +16,10 @@ import java.util.Random;
 
 public class City implements Comparable<City>, Serializable {
     private String ownerLogin;
+    public static String parseOwner(String ownerLogin) throws NameCityException {
+        if (ownerLogin.isEmpty()) ownerLogin = null;
+        return ownerLogin;
+    }
 
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
 
@@ -307,14 +311,14 @@ public class City implements Comparable<City>, Serializable {
                     + "," + this.population + "," + this.metersAboveSeaLevel
                     + "," + this.capital + ","
                     + this.carCode + "," + "null" + ","
-                    + this.governor.toString();
+                    + this.governor.toString() + "," + this.getOwnerLogin();
         else
             return this.id + "," + this.name + "," + this.coordinates.toString() + "," +
                     this.creationDate + "," + this.area
                     + "," + this.population + "," + this.metersAboveSeaLevel
                     + "," + this.capital + ","
                     + this.carCode + "," + this.government.toString() + ","
-                    + this.governor.toString();
+                    + this.governor.toString() + "," + this.getOwnerLogin();
     }
 
     @Override
@@ -341,7 +345,7 @@ public class City implements Comparable<City>, Serializable {
      * @throws GovernorException
      */
     public static City parseCity(String[] args) throws CoordinatesException, NameCityException, AreaException, PopulationException, HeightException, CapitalException, CarCodeException, GovernmentException, GovernorException {
-        if (args.length != 12) {
+        if (args.length != 13) {
             throw new IncorrectDataExceptoin("некорректное количество данных, введено " + args.length + " аргументов");
         } else {
             Integer id = null;
@@ -355,6 +359,7 @@ public class City implements Comparable<City>, Serializable {
             Long carCode = null;
             Government government = null;
             Human governor = null;
+            String owner;
             try {
                 id = City.parseId(args[0].trim());
                 name = City.parseName(args[1].trim());
@@ -369,12 +374,14 @@ public class City implements Comparable<City>, Serializable {
                 carCode = City.parseCarCode(args[9].trim());
                 government = City.parseGovernment(args[10].trim());
                 governor = Human.parseGovernor(args[11].trim());
+                owner = args[12];
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
             City city = new City(name, coordinates, area, population, metersAboveSeaLevel, capital, carCode, government, governor);
             city.setCreationDate(creationDate);
             city.setId(id);
+            city.setOwnerLogin(owner);
             return city;
         }
     }

@@ -1,14 +1,12 @@
 package сommands;
 
 import api.Request;
-import cli.Command;
 import cli.commandExceptions.CommandException;
-import storage.objects.City;
 import storageInterface.StorageInterface;
 
 import java.util.ArrayList;
 
-public class Authorise implements Command {
+public class Authorise implements AuthentificationCommand {
     @Override
     public ArrayList<String> execute(Request request, StorageInterface storage) throws CommandException {
         try {
@@ -19,7 +17,7 @@ public class Authorise implements Command {
             response.add(String.valueOf(access));
             return response;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new CommandException(e.getMessage());
         }
     }
 

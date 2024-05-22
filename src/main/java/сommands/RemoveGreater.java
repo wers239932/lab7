@@ -7,6 +7,7 @@ import storage.db.NotAnOwnerException;
 import storage.objects.City;
 import storageInterface.StorageInterface;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RemoveGreater implements Command {
@@ -20,6 +21,8 @@ public class RemoveGreater implements Command {
                 try {
                     storage.remove(request.getLogin(), city1.getId());
                 } catch (NotAnOwnerException ignored) {
+                } catch (SQLException e) {
+                    throw new CommandException("ошибка при работе с базой данных");
                 }
             }
         }

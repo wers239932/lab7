@@ -17,9 +17,10 @@ public class ProxyStorage implements StorageInterface {
     private DBStorageManager dbStorageManager;
     private DBUserManager dbUserManager;
 
-    public ProxyStorage(DBStorageManager dbStorageManager) {
+    public ProxyStorage(DBStorageManager dbStorageManager, DBUserManager dbUserManager) {
         this.dbStorageManager = dbStorageManager;
         this.storage = new Storage(this.dbStorageManager);
+        this.dbUserManager = dbUserManager;
     }
 
     @Override
@@ -28,36 +29,23 @@ public class ProxyStorage implements StorageInterface {
     }
 
     @Override
-    public void add(City city) {
-        try {
-            this.dbStorageManager.add(city);
-            this.storage.add(city);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
-        }
+    public void add(City city) throws SQLException {
+        this.dbStorageManager.add(city);
+        this.storage.add(city);
     }
 
     @Override
-    public void update(City city, int id) throws NotAnOwnerException {
-        try {
-            this.dbStorageManager.update(city, id);
-            this.storage.update(city, id);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            System.out.println(e.getCause());
-            throw new RuntimeException(e);
-        }
+    public void update(City city, int id) throws NotAnOwnerException, SQLException {
+        this.dbStorageManager.update(city, id);
+        this.storage.update(city, id);
+
     }
 
     @Override
-    public void clear() {
-        try {
-            this.dbStorageManager.clear();
-            this.storage.clear();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public void clear(String login) throws SQLException {
+        this.dbStorageManager.clear(login);
+        this.storage.clear(login);
+
     }
 
     //useless
@@ -88,30 +76,20 @@ public class ProxyStorage implements StorageInterface {
     }
 
     @Override
-    public void remove(String login, int id) throws NotAnOwnerException {
-        try {
-            this.dbStorageManager.remove(login, id);
-            this.storage.remove(login, id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public void remove(String login, int id) throws NotAnOwnerException, SQLException {
+        this.dbStorageManager.remove(login, id);
+        this.storage.remove(login, id);
+
     }
 
     @Override
-    public void register(String login, String passwd) {
-        try {
-            this.dbUserManager.register(login, passwd);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public Boolean register(String login, String passwd) throws SQLException {
+        return this.dbUserManager.register(login, passwd);
+
     }
 
     @Override
-    public Boolean auth(String login, String passwd) {
-        try {
-            return this.dbUserManager.auth(login, passwd);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public Boolean auth(String login, String passwd) throws SQLException {
+        return this.dbUserManager.auth(login, passwd);
     }
 }

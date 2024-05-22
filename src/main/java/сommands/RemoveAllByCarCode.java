@@ -8,6 +8,7 @@ import storage.objects.City;
 import storage.objectExceptions.CarCodeException;
 import storageInterface.StorageInterface;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -30,6 +31,8 @@ public class RemoveAllByCarCode implements Command {
                 try {
                     storage.remove(request.getLogin() ,city.getId());
                 } catch (NotAnOwnerException e) {
+                    throw new RuntimeException(e);
+                } catch (SQLException e) {
                     throw new RuntimeException(e);
                 }
             }

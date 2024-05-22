@@ -8,6 +8,7 @@ import storage.objects.City;
 import storage.objectExceptions.IdException;
 import storageInterface.StorageInterface;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Update implements Command {
@@ -27,6 +28,8 @@ public class Update implements Command {
             response.add("объект обновлен");
         } catch (NotAnOwnerException e) {
             response.add("нет права на изменение объекта");
+        } catch (SQLException e) {
+            throw new CommandException("ошибка при работе с базой данных");
         }
         return response;
     }

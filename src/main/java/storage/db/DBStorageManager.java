@@ -59,7 +59,7 @@ public class DBStorageManager implements DataLoader {
         else throw new NotAnOwnerException();
     }
     private Boolean checkUser(String login, int id) throws SQLException {
-        String query = "SELECT login FROM " + tableName + " WHERE id = ? AND login = ?;";
+        String query = "SELECT * FROM " + tableName + " WHERE id = ? AND owner = ?";
         PreparedStatement ps = this.connection.prepareStatement(query);
         ps.setInt(1, id);
         ps.setString(2, login);
@@ -76,9 +76,11 @@ public class DBStorageManager implements DataLoader {
         }
         else throw new NotAnOwnerException();
     }
-    public void clear() throws SQLException {
-        String query = "TRUNCATE " + tableName;
+    // bad
+    public void clear(String login) throws SQLException {
+        String query = "DELETE FROM " + tableName + " WHERE owner = ?";
         PreparedStatement ps = this.connection.prepareStatement(query);
+        ps.setString(1, login);
         ps.executeUpdate();
     }
     public ArrayList<String[]> getCitiesList() throws SQLException {
@@ -128,6 +130,7 @@ public class DBStorageManager implements DataLoader {
             codedCity.add(resultSet.getString("carCode"));
             codedCity.add(resultSet.getString("government"));
             codedCity.add(resultSet.getString("governor"));
+            codedCity.add(resultSet.getString("owner"));
             String[] codedCity1 = new String[codedCity.size()];
             codedCity1 = codedCity.toArray(codedCity1);
             citiesList.add(codedCity1);

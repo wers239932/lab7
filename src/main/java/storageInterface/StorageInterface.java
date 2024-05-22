@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 public interface StorageInterface {
     public ArrayList<City> getCitiesList();
 
-    public void add(City city);
+    public void add(City city) throws SQLException;
 
-    void update(City city, int id) throws NotAnOwnerException;
+    void update(City city, int id) throws NotAnOwnerException, SQLException;
 
-    public void clear();
+    public void clear(String login) throws SQLException;
 
     public void save() throws IOException;
 
@@ -28,8 +28,8 @@ public interface StorageInterface {
 
     public void getToCollect(Stream<City> cityStream);
 
-    void remove(String login, int id) throws NotAnOwnerException;
+    void remove(String login, int id) throws NotAnOwnerException, SQLException;
 
-    public void register(String login, String passwd);
-    public Boolean auth(String login, String passwd);
+    public Boolean register(String login, String passwd) throws SQLException;
+    public Boolean auth(String login, String passwd) throws SQLException;
 }

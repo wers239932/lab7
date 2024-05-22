@@ -8,11 +8,13 @@ import cli.Command;
 import cli.commandExceptions.CommandException;
 import storage.db.AuthException;
 import storageInterface.StorageInterface;
+import сommands.AuthentificationCommand;
 
 import java.io.*;
 import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
@@ -164,6 +166,7 @@ public class Server {
     public void handleRequest(Request request, SocketAddress clientAddress) {
         String commandName = request.getCommandName();
         Response response = null;
+        System.out.println(commandName);
         switch (commandName) {
             case ("getCommands"): {
                 ArrayList<Command> commands = new ArrayList(this.commandMap.values());
@@ -182,7 +185,7 @@ public class Server {
                 Command command = this.commandMap.get(commandName);
                 ArrayList<String> output = null;
                 try {
-                    if(!this.storage.auth(request.getLogin(), request.getPasswd()))
+                    if(!(command instanceof AuthentificationCommand) && !this.storage.auth(request.getLogin(), request.getPasswd()))
                         throw new AuthException();
                     output = command.execute(request, this.storage);
                     response = new Response<>(output, RequestStatus.DONE, null);
@@ -190,7 +193,13 @@ public class Server {
                     response = new Response<>(RequestStatus.FAILED, e.getMessage());
                     logger.severe("запрос клиента не выполнен, ошибка: " + e.getMessage());
                 } catch (AuthException e) {
-                    response = new Response<>(RequestStatus.FAILED, "данные пользователя неверны");
+                    response = new Response<>(RequestStatus.FAILED, "данные пользователя неверны, ошибка: " + e.getMessage());
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                    throw new RuntimeException(e);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    System.out.println(e.getClass());
                 }
                 break;
             }

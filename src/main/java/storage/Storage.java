@@ -85,8 +85,8 @@ public class Storage implements StorageInterface, Serializable {
 
 
     @Override
-    public void clear() {
-        this.objects.clear();
+    public void clear(String login) {
+        this.objects.removeIf(city -> login.equals(city.getOwnerLogin()));
     }
 
 
@@ -113,8 +113,8 @@ public class Storage implements StorageInterface, Serializable {
     }
 
     @Override
-    public void register(String login, String passwd) {
-
+    public Boolean register(String login, String passwd) {
+        return true;
     }
 
     @Override

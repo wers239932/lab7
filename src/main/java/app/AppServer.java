@@ -5,10 +5,12 @@ import server.Server;
 import storage.ProxyStorage;
 import storage.db.DBStorageManager;
 import storage.Storage;
+import storage.db.DBUserManager;
 import сommands.CommandArrayFiller;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -18,14 +20,18 @@ public class AppServer {
     public static void run() {
         Storage storage = null;
         DBStorageManager dbStorageManager = null;
+        DBUserManager dbUserManager = null;
         try {
             Properties info = new Properties();
             info.load(new FileReader("src/main/java/db.cfg"));
-            dbStorageManager = new DBStorageManager(DriverManager.getConnection("jdbc:postgresql://db:5432/studs", info));
+            Connection connectionUsers = DriverManager.getConnection("jdbc:postgresql://db:5432/studs", info);
+            Connection connectionStorage = DriverManager.getConnection("jdbc:postgresql://db:5432/studs", info);
+            dbStorageManager = new DBStorageManager(connectionStorage);
+            dbUserManager = new DBUserManager(connectionUsers);
         }  catch (Exception e) {
             throw new RuntimeException(e);
         }
-        ProxyStorage proxyStorage = new ProxyStorage(dbStorageManager);
+        ProxyStorage proxyStorage = new ProxyStorage(dbStorageManager, dbUserManager);
         try {
             proxyStorage.load();
         } catch (IOException e) {

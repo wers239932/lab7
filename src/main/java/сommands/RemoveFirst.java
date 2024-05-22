@@ -6,6 +6,7 @@ import cli.commandExceptions.CommandException;
 import storage.db.NotAnOwnerException;
 import storageInterface.StorageInterface;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RemoveFirst implements Command {
@@ -20,6 +21,8 @@ public class RemoveFirst implements Command {
                 response.add("объект удален");
             } catch (NotAnOwnerException e) {
                 response.add("нет права на удаление объекта");
+            } catch (SQLException e) {
+                throw new CommandException("ошибка при работе с базой данных");
             }
         }
         return new ArrayList<>();

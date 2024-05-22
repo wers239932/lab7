@@ -13,7 +13,6 @@ public class ExecuteScript implements Command {
 
     @Override
     public ArrayList<String> execute(Request request, StorageInterface storage) throws CommandException {
-        storage.add((City) request.getData());
         ArrayList<String> response = new ArrayList<>();
         response.add("выполняю скрипт");
         return response;
