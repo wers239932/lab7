@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13d16df6-874a-4a0a-af82-ef5e2fc5602c" name="Changes" comment="написал авторизацию. работает.&#10;проверить работу всех команд&#10;добавить id операций">
-      <change afterPath="$PROJECT_DIR$/src/main/java/client/Encrypter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="13d16df6-874a-4a0a-af82-ef5e2fc5602c" name="Changes" comment="добавил хеширование пароля, исправил баги">
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cli/CommandSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/CommandSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/db/DBUserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/db/DBUserManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716408289051</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="добавил хеширование пароля, исправил баги">
+      <created>1716564252603</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716564252603</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,6 +165,7 @@
     <MESSAGE value="что-то написал" />
     <MESSAGE value="написал авторизацию. не работает" />
     <MESSAGE value="написал авторизацию. работает.&#10;проверить работу всех команд&#10;добавить id операций" />
-    <option name="LAST_COMMIT_MESSAGE" value="написал авторизацию. работает.&#10;проверить работу всех команд&#10;добавить id операций" />
+    <MESSAGE value="добавил хеширование пароля, исправил баги" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил хеширование пароля, исправил баги" />
   </component>
 </project>
