@@ -9,27 +9,24 @@ import storageInterface.StorageInterface;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
-import java.time.Clock;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
-import java.util.stream.Collectors;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Stream;
 
 public class Storage implements StorageInterface, Serializable {
-    private ArrayList<City> objects;
-    private Date creationDate;
-    private DataLoader dataAccessLayer;
+    private final CopyOnWriteArrayList<City> objects;
+    private final Date creationDate;
+    private final DataLoader dataAccessLayer;
 
     public Storage(DataLoader dataAccessLayer) {
-        this.objects = new ArrayList<>();
+        this.objects = new CopyOnWriteArrayList<>();
         this.dataAccessLayer = dataAccessLayer;
         this.creationDate = new Date();
     }
+
     public Storage(DataAccessLayer dal) {
-        this.objects = new ArrayList<>();
+        this.objects = new CopyOnWriteArrayList<>();
         this.dataAccessLayer = dal;
         this.creationDate = new Date();
     }
@@ -54,7 +51,7 @@ public class Storage implements StorageInterface, Serializable {
     }
 
     @Override
-    public ArrayList<City> getCitiesList() {
+    public CopyOnWriteArrayList<City> getCitiesList() {
         CityNameComparator comparator = new CityNameComparator();
         this.objects.sort(comparator);
         return this.objects;
@@ -96,20 +93,15 @@ public class Storage implements StorageInterface, Serializable {
     }
 
 
-
     @Override
     public Stream<City> getCitiesStream() {
         return this.objects.stream();
     }
 
-    @Override
-    public void getToCollect(Stream<City> cityStream) {
-        this.objects = cityStream.collect(Collectors.toCollection(ArrayList::new));
-    }
 
     @Override
     public void remove(String login, int id) {
-        this.objects.removeIf(city -> city.getId()==id);
+        this.objects.removeIf(city -> city.getId() == id);
     }
 
     @Override

@@ -9,7 +9,7 @@ import storageInterface.StorageInterface;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Stream;
 
 public class ProxyStorage implements StorageInterface {
@@ -24,7 +24,7 @@ public class ProxyStorage implements StorageInterface {
     }
 
     @Override
-    public ArrayList<City> getCitiesList() {
+    public CopyOnWriteArrayList<City> getCitiesList() {
         return storage.getCitiesList();
     }
 
@@ -70,10 +70,7 @@ public class ProxyStorage implements StorageInterface {
         return this.storage.getCitiesList().stream();
     }
 
-    @Override
-    public void getToCollect(Stream<City> cityStream) {
-        this.storage.getToCollect(cityStream);
-    }
+
 
     @Override
     public void remove(String login, int id) throws NotAnOwnerException, SQLException {

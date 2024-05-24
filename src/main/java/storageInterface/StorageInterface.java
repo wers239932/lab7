@@ -6,11 +6,11 @@ import storage.objects.StorageInfo;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Stream;
 
 public interface StorageInterface {
-    public ArrayList<City> getCitiesList();
+    public CopyOnWriteArrayList<City> getCitiesList();
 
     public void add(City city) throws SQLException;
 
@@ -25,8 +25,6 @@ public interface StorageInterface {
     public StorageInfo getInfo();
 
     public Stream<City> getCitiesStream();
-
-    public void getToCollect(Stream<City> cityStream);
 
     void remove(String login, int id) throws NotAnOwnerException, SQLException;
 

@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13d16df6-874a-4a0a-af82-ef5e2fc5602c" name="Changes" comment="добавил хеширование пароля, исправил баги">
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/ProxyStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/ProxyStorage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/Storage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storageInterface/StorageInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storageInterface/StorageInterface.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716564252603</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="добавил хеширование пароля, исправил баги">
+      <created>1716564547385</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716564547385</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
