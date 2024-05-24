@@ -22,6 +22,7 @@ public class Request<T> implements Serializable {
     private ArrayList<String> args;
     private String login;
     private String passwd;
+    private int operationId;
 
     public Request(String commandName, T data, ArrayList<String> args, String login, String passwd) {
         this.commandName = commandName;
@@ -58,5 +59,13 @@ public class Request<T> implements Serializable {
     }
     public String getPasswd() {
         return this.passwd;
+    }
+
+    public int getOperationId() {
+        return operationId;
+    }
+
+    public void setOperationId(int operationId) {
+        this.operationId = operationId;
     }
 }

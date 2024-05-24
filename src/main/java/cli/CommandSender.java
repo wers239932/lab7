@@ -5,6 +5,7 @@ import api.Response;
 import cli.commandExceptions.CommandDoesntExistException;
 import cli.commandExceptions.CommandException;
 import client.Client;
+import client.Encrypter;
 import client.InteractiveCityParser;
 import storage.objects.City;
 import сommands.Authorise;
@@ -60,10 +61,12 @@ public class CommandSender {
             try {
                 ArrayList<String> commandLine = new ArrayList<>(List.of(this.terminal.readLine().split(" +")));
                 String commandName = commandLine.get(0);
+                commandLine.remove(0);
                 Command command = this.getCommand(commandName);
                 if(command instanceof Authorise) {
                     String login = commandLine.get(0);
-                    String passwd = commandLine.get(1);
+                    String passwd = Encrypter.encrypt(commandLine.get(1));
+                    commandLine.set(1, passwd);
                     Response response = this.client.sendRequest(new Request<>(commandName, null, commandLine, this.login, this.passwd));
                     if(Boolean.parseBoolean(((ArrayList<String>) response.getData()).get(0))) {
                         this.login = login;
@@ -71,16 +74,26 @@ public class CommandSender {
                         this.terminal.writeLine("доступ получен");
                         this.loggedIn = true;
                     }
-                    else terminal.writeLine("доступ запрещен");
-                } else if(command instanceof Register) {
-                    this.login = commandLine.get(0);
-                    this.passwd = commandLine.get(1);
-                    this.loggedIn = true;
+                    else {
+                        terminal.writeLine("доступ запрещен");
+                        terminal.writeLine(((ArrayList<String>) response.getData()).get(0));
+                    }
+                } else if (command instanceof Register) {
+                    String login = commandLine.get(0);
+                    String passwd = Encrypter.encrypt(commandLine.get(1));
+                    commandLine.set(1, passwd);
+                    Response response = this.client.sendRequest(new Request<>(commandName, null, commandLine));
+                    if (Boolean.parseBoolean(((ArrayList<String>) response.getData()).get(0))) {
+                        this.login = login;
+                        this.passwd = passwd;
+                        this.terminal.writeLine("доступ получен");
+                        this.loggedIn = true;
+                    } else terminal.writeLine("доступ запрещен");
                 } else if(command instanceof Exit)
                 {
                     System.exit(1);
                 } else if (command instanceof ExecuteScript) {
-                    String filename = commandLine.get(1);
+                    String filename = commandLine.get(0);
                     if (this.runningScripts.contains(filename))
                         break;
                     FileTerminal fileIO = new FileTerminal(filename);
@@ -97,7 +110,6 @@ public class CommandSender {
                         city.setCreationDate(ZonedDateTime.now(clock));
                         city.setOwnerLogin(this.login);
                     }
-                    commandLine.remove(0);
                     Response response = this.client.sendRequest(new Request<>(commandName, city, commandLine, this.login, this.passwd));
                     if(response.getError()!=null)
                         this.terminal.writeLine(response.getError());
@@ -142,7 +154,8 @@ public class CommandSender {
                 commandLine.remove(0);
                 if (command instanceof Authorise) {
                     String login = commandLine.get(0);
-                    String passwd = commandLine.get(1);
+                    String passwd = Encrypter.encrypt(commandLine.get(1));
+                    commandLine.set(1, passwd);
                     Response response = this.client.sendRequest(new Request<>(commandName, null, commandLine));
                     if (Boolean.parseBoolean(((ArrayList<String>) response.getData()).get(0))) {
                         this.login = login;
@@ -152,7 +165,8 @@ public class CommandSender {
                     } else terminal.writeLine("доступ запрещен");
                 } else if (command instanceof Register) {
                     String login = commandLine.get(0);
-                    String passwd = commandLine.get(1);
+                    String passwd = Encrypter.encrypt(commandLine.get(1));
+                    commandLine.set(1, passwd);
                     Response response = this.client.sendRequest(new Request<>(commandName, null, commandLine));
                     if (Boolean.parseBoolean(((ArrayList<String>) response.getData()).get(0))) {
                         this.login = login;

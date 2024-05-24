@@ -9,7 +9,7 @@ import java.net.*;
 import java.time.Duration;
 
 public class Client {
-    public final static Duration timeout = Duration.ofSeconds(1);
+    public final static Duration timeout = Duration.ofSeconds(2);
     private InetAddress address;
     private int port;
 

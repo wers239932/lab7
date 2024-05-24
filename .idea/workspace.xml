@@ -4,31 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13d16df6-874a-4a0a-af82-ef5e2fc5602c" name="Changes" comment="написал авторизацию. не работает">
-      <change afterPath="$PROJECT_DIR$/src/main/java/сommands/AuthentificationCommand.java" afterDir="false" />
+    <list default="true" id="13d16df6-874a-4a0a-af82-ef5e2fc5602c" name="Changes" comment="написал авторизацию. работает.&#10;проверить работу всех команд&#10;добавить id операций">
+      <change afterPath="$PROJECT_DIR$/src/main/java/client/Encrypter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/Request.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cli/CommandSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/CommandSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/ProxyStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/ProxyStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/Storage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/db/AuthException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/db/AuthException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/db/DBStorageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/db/DBStorageManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/storage/db/DBUserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/db/DBUserManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/objects/City.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/objects/City.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storageInterface/StorageInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storageInterface/StorageInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Add.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Authorise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Authorise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Clear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Clear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/ExecuteScript.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/ExecuteScript.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveAllByCarCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveAllByCarCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveById.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveById.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveFirst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveFirst.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveGreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveGreater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveLower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveLower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Update.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -154,7 +137,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716324358786</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="написал авторизацию. работает.&#10;проверить работу всех команд&#10;добавить id операций">
+      <created>1716408289051</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716408289051</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -173,6 +163,7 @@
     <MESSAGE value="починил все команды" />
     <MESSAGE value="что-то написал" />
     <MESSAGE value="написал авторизацию. не работает" />
-    <option name="LAST_COMMIT_MESSAGE" value="написал авторизацию. не работает" />
+    <MESSAGE value="написал авторизацию. работает.&#10;проверить работу всех команд&#10;добавить id операций" />
+    <option name="LAST_COMMIT_MESSAGE" value="написал авторизацию. работает.&#10;проверить работу всех команд&#10;добавить id операций" />
   </component>
 </project>

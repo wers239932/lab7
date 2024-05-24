@@ -13,7 +13,7 @@ public class DBUserManager {
         this.connection = connection;
     }
     public Boolean register(String login, String passwd) throws SQLException {
-        String query1 = "SELECT id FROM " + this.tableName + " WHERE login = ?";
+        String query1 = "SELECT * FROM " + this.tableName + " WHERE login = ?";
         PreparedStatement ps1 = this.connection.prepareStatement(query1);
         ps1.setString(1, login);
         ResultSet resultSet = ps1.executeQuery();
