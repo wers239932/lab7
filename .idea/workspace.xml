@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="13d16df6-874a-4a0a-af82-ef5e2fc5602c" name="Changes" comment="добавил использование concurrent коллекции">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/Encrypter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Encrypter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/db/DBStorageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/db/DBStorageManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/db/DBUserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/db/DBUserManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +66,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.client">
+  <component name="RunManager" selected="Application.server">
     <configuration name="client" type="Application" factoryName="Application" singleton="false">
       <envs>
         <env name="MODE" value="client" />
@@ -159,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1716565632047</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="добавил использование concurrent коллекции">
+      <created>1716627703651</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716627703651</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

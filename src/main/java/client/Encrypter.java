@@ -1,10 +1,8 @@
 package client;
 
 import java.math.BigInteger;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.DataTruncation;
 
 public class Encrypter {
     private static String pepper = "-35g35rgj38";

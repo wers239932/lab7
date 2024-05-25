@@ -27,7 +27,9 @@ public class AppServer {
             Connection connectionUsers = DriverManager.getConnection("jdbc:postgresql://db:5432/studs", info);
             Connection connectionStorage = DriverManager.getConnection("jdbc:postgresql://db:5432/studs", info);
             dbStorageManager = new DBStorageManager(connectionStorage);
+            dbStorageManager.createTableIfNeeded();
             dbUserManager = new DBUserManager(connectionUsers);
+            dbUserManager.createTableIfNeeded();
         }  catch (Exception e) {
             throw new RuntimeException(e);
         }
