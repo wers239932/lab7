@@ -4,34 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="13d16df6-874a-4a0a-af82-ef5e2fc5602c" name="Changes" comment="добавил создание таблиц если они нужны">
+    <list default="true" id="13d16df6-874a-4a0a-af82-ef5e2fc5602c" name="Changes" comment="почистил код">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/AppServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/AppServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cli/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cli/CommandSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/CommandSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/db/DBStorageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/db/DBStorageManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/db/DBUserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/db/DBUserManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Add.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Authorise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Authorise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Clear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Clear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/CountGreaterThanCapital.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/CountGreaterThanCapital.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/ExecuteScript.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/ExecuteScript.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Exit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Exit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Help.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Help.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveAllByCarCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveAllByCarCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveById.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveById.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveFirst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveFirst.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveGreater.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveGreater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/RemoveLower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/RemoveLower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Save.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Save.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Show.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Show.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/SumOfCarCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/SumOfCarCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Update.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/сommands/Write.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/сommands/Write.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/InteractiveCityParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/InteractiveCityParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/objects/Human.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/objects/Human.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +176,21 @@
       <option name="project" value="LOCAL" />
       <updated>1716631163265</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="добавил создание таблиц если они нужны">
+      <created>1717060817316</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1717060817316</updated>
+    </task>
+    <task id="LOCAL-00012" summary="почистил код">
+      <created>1717061225043</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1717061225043</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -223,6 +213,7 @@
     <MESSAGE value="добавил хеширование пароля, исправил баги" />
     <MESSAGE value="добавил использование concurrent коллекции" />
     <MESSAGE value="добавил создание таблиц если они нужны" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил создание таблиц если они нужны" />
+    <MESSAGE value="почистил код" />
+    <option name="LAST_COMMIT_MESSAGE" value="почистил код" />
   </component>
 </project>
