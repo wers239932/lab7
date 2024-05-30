@@ -50,4 +50,15 @@ public class RemoveById implements Command {
     public Boolean getNeedObject() {
         return false;
     }
+    @Override
+    public Boolean validateParameter(ArrayList<String> commandLine) throws CommandException {
+        try {
+            int id = City.parseId(commandLine.get(0));
+            return true;
+        } catch (IdException e) {
+            return false;
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException("введен неверный набор данных");
+        }
+    }
 }

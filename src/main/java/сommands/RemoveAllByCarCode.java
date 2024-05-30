@@ -4,6 +4,7 @@ import api.Request;
 import cli.Command;
 import cli.commandExceptions.CommandException;
 import storage.db.NotAnOwnerException;
+import storage.objectExceptions.IdException;
 import storage.objects.City;
 import storage.objectExceptions.CarCodeException;
 import storageInterface.StorageInterface;
@@ -54,5 +55,17 @@ public class RemoveAllByCarCode implements Command {
     @Override
     public Boolean getNeedObject() {
         return false;
+    }
+    @Override
+    public Boolean validateParameter(ArrayList<String> commandLine) throws CommandException {
+        try {
+            Long carCode = City.parseCarCode(commandLine.get(0));
+            return true;
+        } catch (CarCodeException e) {
+            throw new RuntimeException(e);
+        }
+        catch (IndexOutOfBoundsException e) {
+            throw new CommandException("введен неверный набор данных");
+        }
     }
 }

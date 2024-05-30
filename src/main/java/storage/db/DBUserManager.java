@@ -38,8 +38,9 @@ public class DBUserManager {
     }
     public void createTableIfNeeded() throws SQLException {
         String query = "CREATE TABLE IF NOT EXISTS " + this.tableName +
-                " (login SERIAL PRIMARY KEY INTEGER, passwd TEXT)";
+                " (login TEXT PRIMARY KEY, passwd TEXT)";
         PreparedStatement ps = this.connection.prepareStatement(query);
+        ps.execute();
     }
 }
 

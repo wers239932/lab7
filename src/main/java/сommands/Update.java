@@ -3,6 +3,7 @@ package сommands;
 import api.Request;
 import cli.Command;
 import cli.commandExceptions.CommandException;
+import org.w3c.dom.DOMStringList;
 import storage.db.NotAnOwnerException;
 import storage.objects.City;
 import storage.objectExceptions.IdException;
@@ -10,6 +11,7 @@ import storageInterface.StorageInterface;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.SplittableRandom;
 
 public class Update implements Command {
 
@@ -47,5 +49,16 @@ public class Update implements Command {
     @Override
     public Boolean getNeedObject() {
         return true;
+    }
+    @Override
+    public Boolean validateParameter(ArrayList<String> commandLine) throws CommandException {
+        try {
+            int id = City.parseId(commandLine.get(0));
+            return true;
+        } catch (IdException e) {
+            return false;
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException("введен неверный набор данных");
+        }
     }
 }

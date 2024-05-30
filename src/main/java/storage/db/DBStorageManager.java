@@ -139,7 +139,8 @@ public class DBStorageManager implements DataLoader {
     }
     public void createTableIfNeeded() throws SQLException {
         String query = "CREATE TABLE IF NOT EXISTS " + this.tableName +
-                " (id SERIAL PRIMARY KEY INTEGER, name TEXT, coordinate_x TEXT, coordinate_y TEXT, creation_date TEXT, area TEXT, population TEXT, meters_above_sea_level TEXT, capital TEXT, carCode TEXT, government TEXT, governor TEXT, owner TEXT)";
+                " (id SERIAL PRIMARY KEY, name TEXT, coordinate_x TEXT, coordinate_y TEXT, creation_date TEXT, area TEXT, population TEXT, meters_above_sea_level TEXT, capital TEXT, carCode TEXT, government TEXT, governor TEXT, owner TEXT)";
         PreparedStatement ps = this.connection.prepareStatement(query);
+        ps.execute();
     }
 }

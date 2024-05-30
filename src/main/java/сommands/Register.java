@@ -35,4 +35,8 @@ public class Register implements AuthentificationCommand {
     public Boolean getNeedObject() {
         return false;
     }
+    @Override
+    public  Boolean validateParameter(ArrayList<String> commandline) {
+        return true;
+    }
 }

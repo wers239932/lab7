@@ -15,4 +15,7 @@ public interface Command extends Serializable {
     String getDescription();
 
     Boolean getNeedObject();
+    public default Boolean validateParameter(ArrayList<String> commandline) throws CommandException {
+        return true;
+    }
 }

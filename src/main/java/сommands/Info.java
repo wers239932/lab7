@@ -34,4 +34,8 @@ public class Info implements Command {
     public Boolean getNeedObject() {
         return false;
     }
+    @Override
+    public  Boolean validateParameter(ArrayList<String> commandline) {
+        return true;
+    }
 }

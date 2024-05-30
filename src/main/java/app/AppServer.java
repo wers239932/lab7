@@ -1,11 +1,13 @@
 package app;
 
 import cli.Command;
+import dal.DataAccessLayer;
 import server.Server;
 import storage.ProxyStorage;
 import storage.db.DBStorageManager;
 import storage.Storage;
 import storage.db.DBUserManager;
+import storageInterface.StorageInterface;
 import сommands.CommandArrayFiller;
 
 import java.io.FileReader;
@@ -18,7 +20,7 @@ import java.util.Properties;
 
 public class AppServer {
     public static void run() {
-        Storage storage = null;
+        StorageInterface proxyStorage = null;
         DBStorageManager dbStorageManager = null;
         DBUserManager dbUserManager = null;
         try {
@@ -30,10 +32,11 @@ public class AppServer {
             dbStorageManager.createTableIfNeeded();
             dbUserManager = new DBUserManager(connectionUsers);
             dbUserManager.createTableIfNeeded();
+            System.out.println("созданы талблицы если нужны");
         }  catch (Exception e) {
             throw new RuntimeException(e);
         }
-        ProxyStorage proxyStorage = new ProxyStorage(dbStorageManager, dbUserManager);
+        proxyStorage = new ProxyStorage(dbStorageManager, dbUserManager);
         try {
             proxyStorage.load();
         } catch (IOException e) {
@@ -41,8 +44,9 @@ public class AppServer {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
         /*DataAccessLayer dataAccessLayer = new DataAccessLayer(System.getenv("SAVEFILE"));
-        storage = new Storage(dataAccessLayer);*/
+        proxyStorage = new Storage(dataAccessLayer);*/
         String host = System.getenv("SERVER_HOST");
         int port = Integer.parseInt(System.getenv("SERVER_PORT"));
         CommandArrayFiller.setBasicCommands();

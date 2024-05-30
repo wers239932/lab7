@@ -44,4 +44,8 @@ public class RemoveLower implements Command {
     public Boolean getNeedObject() {
         return true;
     }
+    @Override
+    public  Boolean validateParameter(ArrayList<String> commandline) {
+        return true;
+    }
 }

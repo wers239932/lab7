@@ -63,6 +63,9 @@ public class CommandSender {
                 String commandName = commandLine.get(0);
                 commandLine.remove(0);
                 Command command = this.getCommand(commandName);
+                if(!command.validateParameter(commandLine)) {
+                    throw new CommandException("введен неверный набор данных");
+                }
                 if(command instanceof Authorise) {
                     String login = commandLine.get(0);
                     String passwd = Encrypter.encrypt(commandLine.get(1));

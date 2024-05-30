@@ -28,7 +28,6 @@ import java.util.logging.SimpleFormatter;
 
 public class Server {
     private final StorageInterface storage;
-    public final static Duration timeout = Duration.ofMillis(50);
     private final Scanner scanner;
     private final Logger logger = Logger.getLogger("MyLog");
     private final HashMap<String, Command> commandMap;

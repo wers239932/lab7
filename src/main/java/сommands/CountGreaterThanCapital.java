@@ -36,11 +36,15 @@ public class CountGreaterThanCapital implements Command {
 
     @Override
     public String getDescription() {
-        return "count_greater_than_capital capital : вывести количество элементов, значение поля capital которых больше заданного";
+        return "count_greater_than_capital capital : вывести количество элементов, значение поля capital которых больше заданного. введите true если поле равно true, что угодно еще иначе";
     }
 
     @Override
     public Boolean getNeedObject() {
         return false;
+    }
+    @Override
+    public  Boolean validateParameter(ArrayList<String> commandline) {
+        return true;
     }
 }
