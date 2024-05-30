@@ -15,9 +15,7 @@ public class Human implements Serializable {
     public static Human parseGovernor(String governor) throws GovernorException {
         LocalDateTime date;
         try {
-            String[] dateTime = governor.split(" ");
-
-            date = LocalDateTime.parse(dateTime[0] + "T" + dateTime[1]);
+            date = LocalDateTime.parse(governor);
         } catch (Exception e) {
             throw new GovernorException("не удалось преобразовать строку в дату");
         }

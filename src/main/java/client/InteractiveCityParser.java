@@ -33,7 +33,7 @@ public class InteractiveCityParser {
         Parser<Government> parserGovernment = new Parser();
         Government government = parserGovernment.getArgumentWithRules("введите тип правительства: KLEPTOCRACY, CORPORATOCRACY или PATRIARCHY", terminal, arg -> City.parseGovernment((String) arg));
         Parser<Human> parserGovernor = new Parser();
-        Human governor = parserGovernor.getArgumentWithRules("введите дату в формате yyyy-MM-dd HH:mm:ss", terminal, arg -> Human.parseGovernor((String) arg));
+        Human governor = parserGovernor.getArgumentWithRules("введите дату в формате yyyy-MM-dd<английская буква T>HH:mm:ss", terminal, arg -> Human.parseGovernor((String) arg));
         City city = new City(name, new Coordinates(x, y), area, population, deep, capital, carcode, government, governor);
         return city;
     }
