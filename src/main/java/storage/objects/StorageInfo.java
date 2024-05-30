@@ -4,8 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class StorageInfo implements Serializable {
-    private Date creationDate;
-    private int size;
+    private final Date creationDate;
+    private final int size;
 
     public StorageInfo(int size, Date creationDate) {
         this.size = size;

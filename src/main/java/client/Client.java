@@ -10,8 +10,8 @@ import java.time.Duration;
 
 public class Client {
     public final static Duration timeout = Duration.ofSeconds(2);
-    private InetAddress address;
-    private int port;
+    private final InetAddress address;
+    private final int port;
 
     public Client(String host, int port) throws UnknownHostException {
         this.address = InetAddress.getByName(host);

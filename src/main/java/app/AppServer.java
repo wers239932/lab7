@@ -1,11 +1,9 @@
 package app;
 
 import cli.Command;
-import dal.DataAccessLayer;
 import server.Server;
 import storage.ProxyStorage;
 import storage.db.DBStorageManager;
-import storage.Storage;
 import storage.db.DBUserManager;
 import storageInterface.StorageInterface;
 import сommands.CommandArrayFiller;
@@ -33,7 +31,7 @@ public class AppServer {
             dbUserManager = new DBUserManager(connectionUsers);
             dbUserManager.createTableIfNeeded();
             System.out.println("созданы талблицы если нужны");
-        }  catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         proxyStorage = new ProxyStorage(dbStorageManager, dbUserManager);

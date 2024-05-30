@@ -20,10 +20,10 @@ import java.time.ZonedDateTime;
 import java.util.*;
 
 public class CommandSender {
-    private HashMap<String, Command> commandArray;
-    private IOInterface terminal;
-    private HashSet<String> runningScripts;
-    private Client client;
+    private final HashMap<String, Command> commandArray;
+    private final IOInterface terminal;
+    private final HashSet<String> runningScripts;
+    private final Client client;
     private String login;
     private String passwd;
     private Boolean loggedIn = false;
@@ -63,21 +63,20 @@ public class CommandSender {
                 String commandName = commandLine.get(0);
                 commandLine.remove(0);
                 Command command = this.getCommand(commandName);
-                if(!command.validateParameter(commandLine)) {
+                if (!command.validateParameter(commandLine)) {
                     throw new CommandException("введен неверный набор данных");
                 }
-                if(command instanceof Authorise) {
+                if (command instanceof Authorise) {
                     String login = commandLine.get(0);
                     String passwd = Encrypter.encrypt(commandLine.get(1));
                     commandLine.set(1, passwd);
                     Response response = this.client.sendRequest(new Request<>(commandName, null, commandLine, this.login, this.passwd));
-                    if(Boolean.parseBoolean(((ArrayList<String>) response.getData()).get(0))) {
+                    if (Boolean.parseBoolean(((ArrayList<String>) response.getData()).get(0))) {
                         this.login = login;
                         this.passwd = passwd;
                         this.terminal.writeLine("доступ получен");
                         this.loggedIn = true;
-                    }
-                    else {
+                    } else {
                         terminal.writeLine("доступ запрещен");
                         terminal.writeLine(((ArrayList<String>) response.getData()).get(0));
                     }
@@ -92,8 +91,7 @@ public class CommandSender {
                         this.terminal.writeLine("доступ получен");
                         this.loggedIn = true;
                     } else terminal.writeLine("доступ запрещен");
-                } else if(command instanceof Exit)
-                {
+                } else if (command instanceof Exit) {
                     System.exit(1);
                 } else if (command instanceof ExecuteScript) {
                     String filename = commandLine.get(0);
@@ -105,7 +103,7 @@ public class CommandSender {
                     commandSender.addCommandArray(this.getCommandArray());
                     commandSender.start();
                     this.runningScripts.remove(filename);
-                }  else {
+                } else {
                     City city = null;
                     if (command.getNeedObject()) {
                         city = InteractiveCityParser.parseCity(this.terminal);
@@ -114,7 +112,7 @@ public class CommandSender {
                         city.setOwnerLogin(this.login);
                     }
                     Response response = this.client.sendRequest(new Request<>(commandName, city, commandLine, this.login, this.passwd));
-                    if(response.getError()!=null)
+                    if (response.getError() != null)
                         this.terminal.writeLine(response.getError());
                     else
                         this.terminal.writeResponse((ArrayList<String>) response.getData());

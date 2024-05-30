@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileTerminal implements IOInterface {
-    private Scanner file;
+    private final Scanner file;
 
     public FileTerminal(String filename) throws FileNotFoundException {
 

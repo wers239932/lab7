@@ -13,9 +13,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Stream;
 
 public class ProxyStorage implements StorageInterface {
-    private Storage storage;
-    private DBStorageManager dbStorageManager;
-    private DBUserManager dbUserManager;
+    private final Storage storage;
+    private final DBStorageManager dbStorageManager;
+    private final DBUserManager dbUserManager;
 
     public ProxyStorage(DBStorageManager dbStorageManager, DBUserManager dbUserManager) {
         this.dbStorageManager = dbStorageManager;
@@ -69,7 +69,6 @@ public class ProxyStorage implements StorageInterface {
     public Stream<City> getCitiesStream() {
         return this.storage.getCitiesList().stream();
     }
-
 
 
     @Override

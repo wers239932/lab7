@@ -15,9 +15,9 @@ public class RemoveFirst implements Command {
     @Override
     public ArrayList<String> execute(Request request, StorageInterface storage) throws CommandException {
         ArrayList<String> response = new ArrayList<>();
-        if(storage.getCitiesList().size()>=1) {
+        if (storage.getCitiesList().size() >= 1) {
             try {
-                storage.remove(request.getLogin() ,0);
+                storage.remove(request.getLogin(), 0);
                 response.add("объект удален");
             } catch (NotAnOwnerException e) {
                 response.add("нет права на удаление объекта");
@@ -42,8 +42,9 @@ public class RemoveFirst implements Command {
     public Boolean getNeedObject() {
         return false;
     }
+
     @Override
-    public  Boolean validateParameter(ArrayList<String> commandline) {
+    public Boolean validateParameter(ArrayList<String> commandline) {
         return true;
     }
 }

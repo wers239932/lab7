@@ -3,10 +3,10 @@ package dal;
 import java.io.*;
 import java.util.ArrayList;
 
-public class DataAccessLayer implements DataLoader{
+public class DataAccessLayer implements DataLoader {
     private FileReader reader;
-    private File file;
-    private String filename;
+    private final File file;
+    private final String filename;
 
     public DataAccessLayer(String filename) {
         this.filename = filename;
@@ -30,7 +30,7 @@ public class DataAccessLayer implements DataLoader{
         String arg;
         while (true) {
             arg = this.readRecord();
-            if (arg==null)
+            if (arg == null)
                 break;
             record = arg.split(",");
             records.add(record);

@@ -1,4 +1,4 @@
 package api;
 
-public class NoMessageException extends Exception{
+public class NoMessageException extends Exception {
 }

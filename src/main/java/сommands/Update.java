@@ -3,15 +3,13 @@ package сommands;
 import api.Request;
 import cli.Command;
 import cli.commandExceptions.CommandException;
-import org.w3c.dom.DOMStringList;
 import storage.db.NotAnOwnerException;
-import storage.objects.City;
 import storage.objectExceptions.IdException;
+import storage.objects.City;
 import storageInterface.StorageInterface;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.SplittableRandom;
 
 public class Update implements Command {
 
@@ -50,6 +48,7 @@ public class Update implements Command {
     public Boolean getNeedObject() {
         return true;
     }
+
     @Override
     public Boolean validateParameter(ArrayList<String> commandLine) throws CommandException {
         try {

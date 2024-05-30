@@ -1,4 +1,3 @@
-import app.App;
 import app.AppClient;
 import app.AppServer;
 

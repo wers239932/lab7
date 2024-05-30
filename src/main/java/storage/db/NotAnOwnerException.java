@@ -1,4 +1,4 @@
 package storage.db;
 
-public class NotAnOwnerException extends Exception{
+public class NotAnOwnerException extends Exception {
 }

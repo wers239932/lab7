@@ -9,8 +9,8 @@ import java.io.Serializable;
  */
 
 public class Coordinates implements Serializable {
-    private float x;
-    private long y;
+    private final float x;
+    private final long y;
 
     public static float parseXCoord(String x) throws CoordinatesException {
         float y;

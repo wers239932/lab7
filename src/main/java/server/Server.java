@@ -11,11 +11,12 @@ import storageInterface.StorageInterface;
 import сommands.AuthentificationCommand;
 
 import java.io.*;
-import java.net.*;
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.sql.SQLException;
-import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -101,7 +102,7 @@ public class Server {
                     SocketAddress clientAddress = this.datagramChannel.receive(data);
                     if (clientAddress != null) {
                         this.logger.info("получен пакет");
-                        readers.submit(()-> this.tryToReadRequest(data, clientAddress));
+                        readers.submit(() -> this.tryToReadRequest(data, clientAddress));
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -112,33 +113,32 @@ public class Server {
 
 
     public void sendReply(Response object, DatagramChannel datagramChannel, SocketAddress address) {
-        try{
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
-        objectOutputStream.writeObject(object);
-        objectOutputStream.flush();
-        byte[] sendData = byteArrayOutputStream.toByteArray();
-        int len = sendData.length;
-        Random random = new Random();
-        int id = random.nextInt();
-        int dataSize = ProtocolInfo.messageSize - ProtocolInfo.headerSize;
-        byte total = (byte) ((len + dataSize - 1) / dataSize);
-        byte index = 0;
-        while (index < total) {
-            ByteArrayOutputStream part = new ByteArrayOutputStream();
-            byte[] bytes = ByteBuffer.allocate(4).putInt(id).array();
-            part.write(bytes);
-            part.write(total);
-            part.write(index);
-            int end = (index + 1) * dataSize;
-            if (end > len) end = len;
-            part.write(Arrays.copyOfRange(sendData, index * dataSize, end));
-            index++;
-            datagramChannel.send(ByteBuffer.wrap(part.toByteArray()), address);
-        }
-        logger.info("отправлен ответ");
-        }
-        catch (IOException e) {
+        try {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+            objectOutputStream.writeObject(object);
+            objectOutputStream.flush();
+            byte[] sendData = byteArrayOutputStream.toByteArray();
+            int len = sendData.length;
+            Random random = new Random();
+            int id = random.nextInt();
+            int dataSize = ProtocolInfo.messageSize - ProtocolInfo.headerSize;
+            byte total = (byte) ((len + dataSize - 1) / dataSize);
+            byte index = 0;
+            while (index < total) {
+                ByteArrayOutputStream part = new ByteArrayOutputStream();
+                byte[] bytes = ByteBuffer.allocate(4).putInt(id).array();
+                part.write(bytes);
+                part.write(total);
+                part.write(index);
+                int end = (index + 1) * dataSize;
+                if (end > len) end = len;
+                part.write(Arrays.copyOfRange(sendData, index * dataSize, end));
+                index++;
+                datagramChannel.send(ByteBuffer.wrap(part.toByteArray()), address);
+            }
+            logger.info("отправлен ответ");
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -156,12 +156,14 @@ public class Server {
         logger.info("прочитан запрос");
         return request;
     }
-    public void tryToReadRequest(ByteBuffer data, SocketAddress clientAddress){
+
+    public void tryToReadRequest(ByteBuffer data, SocketAddress clientAddress) {
         Request request = this.readRequest(data);
         if (request != null) {
-            handlers.submit(()->this.handleRequest(request, clientAddress));
+            handlers.submit(() -> this.handleRequest(request, clientAddress));
         }
     }
+
     public void handleRequest(Request request, SocketAddress clientAddress) {
         String commandName = request.getCommandName();
         Response response = null;
@@ -184,7 +186,7 @@ public class Server {
                 Command command = this.commandMap.get(commandName);
                 ArrayList<String> output = null;
                 try {
-                    if(!(command instanceof AuthentificationCommand) && !this.storage.auth(request.getLogin(), request.getPasswd()))
+                    if (!(command instanceof AuthentificationCommand) && !this.storage.auth(request.getLogin(), request.getPasswd()))
                         throw new AuthException();
                     output = command.execute(request, this.storage);
                     response = new Response<>(output, RequestStatus.DONE, null);
@@ -204,6 +206,6 @@ public class Server {
             }
         }
         Response finalResponse = response;
-        senders.submit(()->this.sendReply(finalResponse, this.datagramChannel, clientAddress));
+        senders.submit(() -> this.sendReply(finalResponse, this.datagramChannel, clientAddress));
     }
 }

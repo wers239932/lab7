@@ -4,14 +4,12 @@ import api.Request;
 import cli.Command;
 import cli.commandExceptions.CommandException;
 import storage.db.NotAnOwnerException;
-import storage.objectExceptions.IdException;
-import storage.objects.City;
 import storage.objectExceptions.CarCodeException;
+import storage.objects.City;
 import storageInterface.StorageInterface;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class RemoveAllByCarCode implements Command {
 
@@ -27,10 +25,10 @@ public class RemoveAllByCarCode implements Command {
             throw new CommandException("не введен аргумент");
         }
         ArrayList<String> response = new ArrayList<>();
-        for(City city : storage.getCitiesList()) {
-            if(city.getCarCode().equals(carCode) && city.getOwnerLogin().equals(request.getLogin())) {
+        for (City city : storage.getCitiesList()) {
+            if (city.getCarCode().equals(carCode) && city.getOwnerLogin().equals(request.getLogin())) {
                 try {
-                    storage.remove(request.getLogin() ,city.getId());
+                    storage.remove(request.getLogin(), city.getId());
                 } catch (NotAnOwnerException e) {
                     throw new RuntimeException(e);
                 } catch (SQLException e) {
@@ -56,6 +54,7 @@ public class RemoveAllByCarCode implements Command {
     public Boolean getNeedObject() {
         return false;
     }
+
     @Override
     public Boolean validateParameter(ArrayList<String> commandLine) throws CommandException {
         try {
@@ -63,8 +62,7 @@ public class RemoveAllByCarCode implements Command {
             return true;
         } catch (CarCodeException e) {
             throw new RuntimeException(e);
-        }
-        catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new CommandException("введен неверный набор данных");
         }
     }

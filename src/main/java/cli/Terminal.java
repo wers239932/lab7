@@ -1,6 +1,5 @@
 package cli;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,6 +31,7 @@ public class Terminal implements IOInterface {
     public Boolean isInteractive() {
         return true;
     }
+
     @Override
     public void closeStream() {
         this.sc.close();

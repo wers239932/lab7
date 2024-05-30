@@ -14,11 +14,11 @@ public class Request<T> implements Serializable {
     /**
      * название команды серверу
      */
-    private String commandName;
+    private final String commandName;
     /**
      * информация для запроса
      */
-    private T data;
+    private final T data;
     private ArrayList<String> args;
     private String login;
     private String passwd;
@@ -31,6 +31,7 @@ public class Request<T> implements Serializable {
         this.login = login;
         this.passwd = passwd;
     }
+
     public Request(String commandName, T data, ArrayList<String> args) {
         this.commandName = commandName;
         this.data = data;
@@ -57,6 +58,7 @@ public class Request<T> implements Serializable {
     public String getLogin() {
         return this.login;
     }
+
     public String getPasswd() {
         return this.passwd;
     }

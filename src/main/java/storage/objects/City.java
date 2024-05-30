@@ -16,6 +16,7 @@ import java.util.Random;
 
 public class City implements Comparable<City>, Serializable {
     private String ownerLogin;
+
     public static String parseOwner(String ownerLogin) throws NameCityException {
         if (ownerLogin.isEmpty()) ownerLogin = null;
         return ownerLogin;
@@ -294,7 +295,7 @@ public class City implements Comparable<City>, Serializable {
         return this.ownerLogin;
     }
 
-    public void setOwnerLogin(String  ownerLogin) {
+    public void setOwnerLogin(String ownerLogin) {
         this.ownerLogin = ownerLogin;
     }
 

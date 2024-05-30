@@ -10,5 +10,5 @@ import java.io.Serializable;
 public enum Government implements Serializable {
     KLEPTOCRACY,
     CORPORATOCRACY,
-    PATRIARCHY;
+    PATRIARCHY
 }

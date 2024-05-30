@@ -16,8 +16,8 @@ public class RemoveLower implements Command {
     public ArrayList<String> execute(Request request, StorageInterface storage) throws CommandException {
         City city = (City) request.getData();
         ArrayList<String> response = new ArrayList<>();
-        for(City city1: storage.getCitiesList()) {
-            if(city1.compareTo(city)<0 && city1.getOwnerLogin().equals(request.getLogin())) {
+        for (City city1 : storage.getCitiesList()) {
+            if (city1.compareTo(city) < 0 && city1.getOwnerLogin().equals(request.getLogin())) {
                 try {
                     storage.remove(request.getLogin(), city1.getId());
                 } catch (NotAnOwnerException ignored) {
@@ -44,8 +44,9 @@ public class RemoveLower implements Command {
     public Boolean getNeedObject() {
         return true;
     }
+
     @Override
-    public  Boolean validateParameter(ArrayList<String> commandline) {
+    public Boolean validateParameter(ArrayList<String> commandline) {
         return true;
     }
 }

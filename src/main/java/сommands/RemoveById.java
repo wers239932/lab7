@@ -4,8 +4,8 @@ import api.Request;
 import cli.Command;
 import cli.commandExceptions.CommandException;
 import storage.db.NotAnOwnerException;
-import storage.objects.City;
 import storage.objectExceptions.IdException;
+import storage.objects.City;
 import storageInterface.StorageInterface;
 
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ public class RemoveById implements Command {
         }
         ArrayList<String> response = new ArrayList<>();
         try {
-            storage.remove(request.getLogin() , id);
+            storage.remove(request.getLogin(), id);
             response.add("объект удален");
         } catch (NotAnOwnerException e) {
             response.add("нет права на удаление объекта");
@@ -50,6 +50,7 @@ public class RemoveById implements Command {
     public Boolean getNeedObject() {
         return false;
     }
+
     @Override
     public Boolean validateParameter(ArrayList<String> commandLine) throws CommandException {
         try {

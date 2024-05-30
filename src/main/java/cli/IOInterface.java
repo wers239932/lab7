@@ -11,5 +11,6 @@ public interface IOInterface {
     String readLine() throws IOException;
 
     Boolean isInteractive();
-    public void closeStream();
+
+    void closeStream();
 }

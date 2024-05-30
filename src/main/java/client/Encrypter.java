@@ -5,7 +5,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Encrypter {
-    private static String pepper = "-35g35rgj38";
+    private static final String pepper = "-35g35rgj38";
+
     public static String encrypt(String line) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");
@@ -17,8 +18,7 @@ public class Encrypter {
                 hashText = "0" + hashText;
             }
             return hashText;
-        }
-       catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }

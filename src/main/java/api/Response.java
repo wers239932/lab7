@@ -29,8 +29,8 @@ public class Response<T> implements Serializable {
     public RequestStatus getRequestStatus() {
         return this.requestStatus;
     }
-    public Boolean isDone()
-    {
+
+    public Boolean isDone() {
         return this.requestStatus.equals(RequestStatus.DONE);
     }
 }

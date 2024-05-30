@@ -1,13 +1,10 @@
 package app;
 
-import cli.CommandSender;
-import cli.Terminal;
 import dal.DataAccessLayer;
 import storage.Storage;
 import сommands.CommandArrayFiller;
 import сommands.Save;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class App {

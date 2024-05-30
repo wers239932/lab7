@@ -4,16 +4,20 @@ import dal.DataLoader;
 import storage.objects.City;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class DBStorageManager implements DataLoader {
-    private Connection connection;
+    private final Connection connection;
     private final String tableName = "cities_list";
-    public DBStorageManager(Connection connection)
-    {
+
+    public DBStorageManager(Connection connection) {
         this.connection = connection;
     }
+
     public void add(City city) throws SQLException {
         String query = "INSERT INTO " + this.tableName +
                 " (name, coordinate_x, coordinate_y, creation_date, area, population, meters_above_sea_level, capital, carCode, government, governor, owner)" +
@@ -21,7 +25,7 @@ public class DBStorageManager implements DataLoader {
         PreparedStatement ps = this.connection.prepareStatement(query);
         this.addCity(ps, city);
         int changed = ps.executeUpdate();
-        if(changed!=1) throw new SQLException("неизвестная ошибка при взаимодействии с базой данных");
+        if (changed != 1) throw new SQLException("неизвестная ошибка при взаимодействии с базой данных");
         ps = this.connection.prepareStatement("SELECT id FROM " + tableName + " ORDER BY id DESC LIMIT 1;");
         ResultSet resultSet = ps.executeQuery();
         int id;
@@ -31,6 +35,7 @@ public class DBStorageManager implements DataLoader {
             throw new SQLException("нет получен id добавленного города");
         city.setId(id);
     }
+
     private void addCity(PreparedStatement ps, City city) throws SQLException {
         ps.setString(1, city.getName());
         ps.setString(2, String.valueOf(city.getCoordinates().getX()));
@@ -45,9 +50,9 @@ public class DBStorageManager implements DataLoader {
         ps.setString(11, String.valueOf(city.getGovernor()));
         ps.setString(12, city.getOwnerLogin());
     }
+
     public void update(City city, int id) throws SQLException, NotAnOwnerException {
-        if(checkUser(city.getOwnerLogin(), id))
-        {
+        if (checkUser(city.getOwnerLogin(), id)) {
             String query = "UPDATE " + this.tableName + " SET " +
                     "name = ?, coordinate_x = ?, coordinate_y = ?, creation_date = ?, area = ?, population = ?, meters_above_sea_level = ?, capital = ?, carCode = ?, government = ?, governor = ?" +
                     "WHERE id = ?";
@@ -55,9 +60,9 @@ public class DBStorageManager implements DataLoader {
             this.addCity(ps, city);
             ps.setInt(12, id);
             System.out.println(ps.executeUpdate());
-        }
-        else throw new NotAnOwnerException();
+        } else throw new NotAnOwnerException();
     }
+
     private Boolean checkUser(String login, int id) throws SQLException {
         String query = "SELECT * FROM " + tableName + " WHERE id = ? AND owner = ?";
         PreparedStatement ps = this.connection.prepareStatement(query);
@@ -66,16 +71,17 @@ public class DBStorageManager implements DataLoader {
         ResultSet resultSet = ps.executeQuery();
         return resultSet.next();
     }
+
     ///////
     public void remove(String login, int id) throws SQLException, NotAnOwnerException {
-        if(checkUser(login, id)) {
+        if (checkUser(login, id)) {
             String query = "DELETE FROM " + this.tableName + " WHERE id = ?";
             PreparedStatement ps = this.connection.prepareStatement(query);
             ps.setInt(1, id);
             ps.executeUpdate();
-        }
-        else throw new NotAnOwnerException();
+        } else throw new NotAnOwnerException();
     }
+
     // bad
     public void clear(String login) throws SQLException {
         String query = "DELETE FROM " + tableName + " WHERE owner = ?";
@@ -83,13 +89,14 @@ public class DBStorageManager implements DataLoader {
         ps.setString(1, login);
         ps.executeUpdate();
     }
+
     public ArrayList<String[]> getCitiesList() throws SQLException {
         String query = "SELECT * FROM " + tableName + ";";
         PreparedStatement ps = this.connection.prepareStatement(query);
         ResultSet resultSet = ps.executeQuery();
         resultSet.first();
         ArrayList<String[]> citiesList = new ArrayList<>();
-        while(!resultSet.isAfterLast()) {
+        while (!resultSet.isAfterLast()) {
             int id = resultSet.getInt("id");
             ArrayList<String> codedCity = new ArrayList<>();
             codedCity.add(Integer.valueOf(id).toString());
@@ -115,7 +122,7 @@ public class DBStorageManager implements DataLoader {
         PreparedStatement ps = this.connection.prepareStatement(query, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         ResultSet resultSet = ps.executeQuery();
         ArrayList<String[]> citiesList = new ArrayList<>();
-        while(resultSet.next()) {
+        while (resultSet.next()) {
             int id = resultSet.getInt("id");
             ArrayList<String> codedCity = new ArrayList<>();
             codedCity.add(Integer.toString(id));
@@ -137,6 +144,7 @@ public class DBStorageManager implements DataLoader {
         }
         return citiesList;
     }
+
     public void createTableIfNeeded() throws SQLException {
         String query = "CREATE TABLE IF NOT EXISTS " + this.tableName +
                 " (id SERIAL PRIMARY KEY, name TEXT, coordinate_x TEXT, coordinate_y TEXT, creation_date TEXT, area TEXT, population TEXT, meters_above_sea_level TEXT, capital TEXT, carCode TEXT, government TEXT, governor TEXT, owner TEXT)";

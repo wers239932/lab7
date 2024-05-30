@@ -2,7 +2,7 @@ package client;
 
 import cli.IOInterface;
 import cli.commandExceptions.CommandException;
-import storage.*;
+import storage.Parser;
 import storage.objects.City;
 import storage.objects.Coordinates;
 import storage.objects.Government;

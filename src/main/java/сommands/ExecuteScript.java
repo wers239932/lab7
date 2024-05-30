@@ -3,7 +3,6 @@ package сommands;
 import api.Request;
 import cli.Command;
 import cli.commandExceptions.CommandException;
-import storage.objects.City;
 import storageInterface.StorageInterface;
 
 import java.util.ArrayList;
@@ -32,8 +31,9 @@ public class ExecuteScript implements Command {
     public Boolean getNeedObject() {
         return false;
     }
+
     @Override
-    public  Boolean validateParameter(ArrayList<String> commandline) {
+    public Boolean validateParameter(ArrayList<String> commandline) {
         return true;
     }
 

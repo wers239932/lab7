@@ -17,7 +17,7 @@ public class CountGreaterThanCapital implements Command {
         Boolean capital;
         try {
             capital = City.parseCapital((String) request.getArgs().get(0));
-        }catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new CommandException("не введен аргумент");
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
@@ -43,8 +43,9 @@ public class CountGreaterThanCapital implements Command {
     public Boolean getNeedObject() {
         return false;
     }
+
     @Override
-    public  Boolean validateParameter(ArrayList<String> commandline) {
+    public Boolean validateParameter(ArrayList<String> commandline) {
         return true;
     }
 }
